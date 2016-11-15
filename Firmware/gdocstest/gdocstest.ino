@@ -66,16 +66,16 @@ void myHandler(const char *event, const char *data) {
 // the loop routine runs over and over again forever:
 void loop() {
   currentTM = millis();
-  if (currentTM - measureTM > 10000) {
-    measurement += analogRead(A0);
+  if (currentTM - measureTM > 10) {
+    measurement += abs(analogRead(A0)-512);
     measurements++;
     measureTM = currentTM;
   }
 
-  if (currentTM - postTM > 60000) {
+  if (currentTM - postTM > 5999) {
     postTM = currentTM;
     // Get some data
-    String tempMessage = String(analogRead(A0));
+    String tempMessage = String(abs(analogRead(A0)-512));
     int asdf = 23;
     String concatmsg = "{\"my-name\":\"";
     concatmsg += "34";
